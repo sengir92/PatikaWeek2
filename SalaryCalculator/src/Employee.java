@@ -6,10 +6,6 @@ public class Employee {
     double salary;
     int workHours;
     int hireYear;
-    double tax;
-    double bonus;
-    double salaryIncrease;
-
 
 
     //create constructor method
@@ -21,48 +17,55 @@ public class Employee {
         this.workHours = workHours;
         this.hireYear = hireYear;
     }
+
     //create tax method for tax calculation
     public double tax() {
-        if(salary > 1000.0) {
-           this.tax= salary * 0.03;
+        double tax = 0.0;
+        if (salary > 1000.0) {
+            tax = salary * 0.03;
         }
-        return this.tax;
+        return tax;
     }
+
     //create bonus method for bonus calculation
     public double bonus() {
-        if(workHours > 40) {
-            this.bonus = (workHours - 40.0) * 30.0;
+        int bonus = 0;
+        if (workHours > 40) {
+            bonus = (workHours - 40) * 30;
         }
-        return this.bonus;
+        return bonus;
     }
+
     //create raiseSalary method for salary increase
     public double raiseSalary() {
-        int workYear = 2021-hireYear;
-        if (workYear < 10) {
-             this.salaryIncrease = salary * 0.05;
+        int workYear = 2021 - hireYear;
 
-        } else if (workYear > 9 && workYear < 20) {
-            this.salaryIncrease = salary *0.1;
+        if (workYear < 10) {
+            return salary * 0.05;
+
+        } else if (workYear >= 10 && workYear < 20) {
+            return salary * 0.1;
 
         } else if (workYear > 19) {
-            this.salaryIncrease = salary * 0.15;
+            return salary * 0.15;
 
         }
-        return this.salaryIncrease;
+        return 0;
 
     }
+
     //create toString method for show all information of employees
     @Override
     public String toString() {
-      return ("Name: " + name+"\n") +
-              ("Salary: " + salary + "\n")+
-              ("Work Hour: " + workHours + "\n") +
-              ("Hire Year: " + hireYear + "\n") +
-              ("Tax: " + tax + "\n")+
-              ("Bonus: " + bonus + "\n")+
-              ("Salary Increase: " + salaryIncrease +"\n")+
-              ("Salary with tax and bonuses: " + (salary-tax+bonus) + "\n") +
-              ("Total salary: " + (salary - tax + bonus + salaryIncrease));
+        return ("Name: " + name + "\n") +
+                ("Salary: " + salary + "\n") +
+                ("Work Hour: " + workHours + "\n") +
+                ("Hire Year: " + hireYear + "\n") +
+                ("Tax: " + tax() + "\n") +
+                ("Bonus: " + bonus() + "\n") +
+                ("Salary Increase: " + raiseSalary() + "\n") +
+                ("Salary with tax and bonuses: " + (salary - tax() + bonus()) + "\n") +
+                ("Total salary: " + (salary - tax() + bonus() + raiseSalary()));
 
     }
 
